@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duelo na Arena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="game">
+
+    <div class="hud">
+        <div class="player-ui blue">
+            <div class="name">JOGADOR 1</div>
+            <div class="bar">
+                <div id="health1" class="health"></div>
+            </div>
+            <div class="special">
+                <div id="special1"></div>
+            </div>
+        </div>
+
+        <div class="timer" id="timer">3:00</div>
+
+        <div class="player-ui red">
+            <div class="name">JOGADOR 2</div>
+            <div class="bar">
+                <div id="health2" class="health"></div>
+            </div>
+            <div class="special">
+                <div id="special2"></div>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas" width="1000" height="600"></canvas>
+
+    <div id="message" class="message">
+        <h1>DUELo NA ARENA</h1>
+        <p>Pressione ENTER para começar</p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
