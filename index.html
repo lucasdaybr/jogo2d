@@ -3,46 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duelo na Arena</title>
+    <title>Neon Casino 2D</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="game">
+<div class="casino">
 
-    <div class="hud">
-        <div class="player-ui blue">
-            <div class="name">JOGADOR 1</div>
-            <div class="bar">
-                <div id="health1" class="health"></div>
-            </div>
-            <div class="special">
-                <div id="special1"></div>
+    <header>
+        <div>
+            <h1>🎰 NEON CASINO</h1>
+            <p>Duelo de 2 jogadores • Fichas virtuais</p>
+        </div>
+
+        <button id="resetBtn" class="reset">
+            🔄 Reiniciar
+        </button>
+    </header>
+
+    <!-- JOGADORES -->
+
+    <section class="players">
+
+        <div class="player player1">
+            <div class="avatar">👨‍💼</div>
+
+            <div class="player-info">
+                <h2>Jogador 1</h2>
+
+                <div class="money">
+                    💰 <span id="money1">1000</span>
+                </div>
+
+                <div class="wins">
+                    Vitórias: <span id="wins1">0</span>
+                </div>
             </div>
         </div>
 
-        <div class="timer" id="timer">3:00</div>
+        <div class="vs">
+            VS
+        </div>
 
-        <div class="player-ui red">
-            <div class="name">JOGADOR 2</div>
-            <div class="bar">
-                <div id="health2" class="health"></div>
-            </div>
-            <div class="special">
-                <div id="special2"></div>
+        <div class="player player2">
+            <div class="avatar">👩‍💼</div>
+
+            <div class="player-info">
+                <h2>Jogador 2</h2>
+
+                <div class="money">
+                    💰 <span id="money2">1000</span>
+                </div>
+
+                <div class="wins">
+                    Vitórias: <span id="wins2">0</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <canvas id="gameCanvas" width="1000" height="600"></canvas>
+    </section>
 
-    <div id="message" class="message">
-        <h1>DUELo NA ARENA</h1>
-        <p>Pressione ENTER para começar</p>
-    </div>
+    <!-- MENU -->
+
+    <nav class="games-menu">
+
+        <button class="game-btn active" data-game="roulette">
+            🎡 Roleta
+        </button>
+
+        <button class="game-btn" data-game="coin">
+            🪙 Cara ou Coroa
+        </button>
+
+        <button class="game-btn" data-game="dice">
+            🎲 Dados
+        </button>
+
+    </nav>
+
+    <!-- ROLETAS -->
+
+    <main>
+
+        <section id="roulette" class="game-screen active">
+
+            <div class="game-title">
+                <h2>🎡 Roleta Neon</h2>
+                <p>Escolha sua cor e tente multiplicar suas fichas.</p>
+            </div>
+
+            <div class="roulette-area">
+
+                <div class="wheel-container">
+
+                    <div class="pointer">▼</div>
+
+                    <div id="wheel" class="wheel">
+
+                        <div class="wheel-center">
+                            🎰
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="bet-panel">
+
+                    <h3>Aposta</h3>
+
+                    <label>
+                        Jogador:
+                        <select id="roulettePlayer">
+                            <option value="1">Jogador 1</option>
+                            <option value="2">Jogador 2</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Fichas:
+                        <input
+                            id="rouletteBet"
+                            type="number"
+                            min="10"
+                            value="50"
+                        >
+                    </label>
+
+                    <div class="color-buttons">
+
+                        <button
+                            class="color-btn red selected"
+                            data-color="red">
+                            🔴 Vermelho
+                        </button>
+
+                        <button
+                            class="color-btn black"
+                            data-color="black">
+                            ⚫ Preto
+                        </button>
+
+                    </div>
+
+                    <button id="spinBtn" class="main-btn">
+                        GIRAR ROLETA
+                    </button>
+
+                    <div id="rouletteResult" class="result">
+                        Faça sua aposta!
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CARA OU COROA -->
+
+        <section id="coin" class="game-screen">
+
+            <div class="game-title">
+                <h2>🪙 Cara ou Coroa</h2>
+                <p>Escolha um lado e veja o resultado.</p>
+            </div>
+
+            <div class="coin-area">
+
+                <div id="coinObject" class="coin">
+                    ?
+                </div>
+
+                <div class="coin-controls">
+
+                    <label>
+                        Jogador:
+                        <select id="coinPlayer">
+                            <option value="1">Jogador 1</option>
+                            <option value="2">Jogador 2</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Fichas:
+                        <input
+                            id="coinBet"
+                            type="number"
+                            min="10"
+                            value="50"
+                        >
+                    </label>
+
+                    <div class="choice-buttons">
+
+                        <button
+                            class="choice-btn selected"
+                            data-choice="heads">
+                            🟡 Cara
+                        </button>
+
+                        <button
+                            class="choice-btn"
+                            data-choice="tails">
+                            🔵 Coroa
+                        </button>
+
+                    </div>
+
+                    <button id="flipBtn" class="main-btn">
+                        LANÇAR MOEDA
+                    </button>
+
+                    <div id="coinResult" class="result">
+                        Escolha Cara ou Coroa.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- DADOS -->
+
+        <section id="dice" class="game-screen">
+
+            <div class="game-title">
+                <h2>🎲 Duelo de Dados</h2>
+                <p>O jogador com o maior número vence.</p>
+            </div>
+
+            <div class="dice-area">
+
+                <div class="dice-player">
+
+                    <h3>Jogador 1</h3>
+
+                    <div id="dice1" class="dice">
+                        ⚄
+                    </div>
+
+                    <input
+                        id="diceBet1"
+                        type="number"
+                        min="10"
+                        value="50"
+                    >
+
+                </div>
+
+                <div class="dice-vs">
+                    VS
+                </div>
+
+                <div class="dice-player">
+
+                    <h3>Jogador 2</h3>
+
+                    <div id="dice2" class="dice">
+                        ⚄
+                    </div>
+
+                    <input
+                        id="diceBet2"
+                        type="number"
+                        min="10"
+                        value="50"
+                    >
+
+                </div>
+
+            </div>
+
+            <button id="rollDiceBtn" class="main-btn">
+                🎲 ROLAR DADOS
+            </button>
+
+            <div id="diceResult" class="result">
+                Faça sua aposta e role os dados.
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- HISTÓRICO -->
+
+    <section class="history">
+
+        <h2>📜 Histórico</h2>
+
+        <div id="historyList">
+            <p class="empty">
+                Nenhuma jogada ainda.
+            </p>
+        </div>
+
+    </section>
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
